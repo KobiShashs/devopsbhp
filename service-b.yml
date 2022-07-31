@@ -7,3 +7,4 @@ spring:
       discovery: 
         instanceId: ${spring.application.name}:${random.value}
         health-check-interval: 5s
+

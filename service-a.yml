@@ -7,3 +7,8 @@ spring:
       discovery: 
         instanceId: service-a
         health-check-interval: 5s
+
+eco:
+  system:
+    url:
+      b: 'http://service-b/service/b'
