@@ -1,24 +1,20 @@
 server:
-  port: 8080
+  port: '8080'
 
 management:
   health:
     circuitbreakers:
       enabled: true
-  endpoint:
-    health:
-      enabled: true
-      show-details: always
-    metrics:
-      enabled: true
-    prometheus:
-      enabled: true
-  metrics:
-    distribution:
-      percentiles-histogram:
-        http:
-          server:
-            requests: 'true'
+  security: 
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      # path-mapping:
+      #   prometheus: metrics
+
+
 spring:
   cloud:
     consul:
@@ -33,19 +29,19 @@ spring:
       - id: service-a
         uri: lb://service-a
         predicates:
-        - Path=/srva/**
+        - Path=/moshe/**
         filters:
-        - RewritePath=/srva/(?<segment>.*), /$\{segment}
+        - RewritePath=/moshe/(?<segment>.*), /$\{segment}
         - name: CircuitBreaker
           args:
             name: monitor-srvA
             fallbackUri: forward:/fallback/serviceA
       - id: service-b
-        uri: lb://ms-service-b
+        uri: lb://service-b
         predicates:
-        - Path=/srvb/**
+        - Path=/kobi/**
         filters:
-        - RewritePath=/srvb/(?<segment>.*), /$\{segment}
+        - RewritePath=/kobi/(?<segment>.*), /$\{segment}
         - name: CircuitBreaker
           args:
             name: monitor-srvB
