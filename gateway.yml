@@ -7,7 +7,7 @@ spring:
       discovery: 
         instanceId: gateway
         health-check-interval: 5s
-    gateway:
+        gateway:
       discovery:
         locator:
           enabled: true
@@ -15,20 +15,20 @@ spring:
       - id: service-a
         uri: lb://service-a
         predicates:
-        - Path : /srva/**
+        - Path=/srva/**
         filters:
         - RewritePath=/srva/(?<segment>.*), /$\{segment}
         - name: CircuitBreaker
           args:
-            name: monitor-a
+            name: monitor-srvA
             fallbackUri: forward:/fallback/serviceA
       - id: service-b
         uri: lb://service-b
         predicates:
-        - Path: /srvb/**
+        - Path=/srvb/**
         filters:
         - RewritePath=/srvb/(?<segment>.*), /$\{segment}
         - name: CircuitBreaker
           args:
-            name: monitor-b
+            name: monitor-srvB
             fallbackUri: forward:/fallback/serviceB
