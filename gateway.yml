@@ -1,6 +1,24 @@
 server:
   port: 8080
 
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: 'true'
 spring:
   cloud:
     consul:
