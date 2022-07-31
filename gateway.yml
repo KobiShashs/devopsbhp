@@ -17,6 +17,7 @@ spring:
         predicates:
         - Path : /srva/**
         filters:
+        - name: CircuitBreaker
           args:
             name: monitor-a
             fallbackUri: forward:/fallback/serviceA
@@ -25,6 +26,7 @@ spring:
         predicates:
         - Path: /srvb/**
         filters:
+        - name: CircuitBreaker
           args:
             name: monitor-b
             fallbackUri: forward:/fallback/serviceB
