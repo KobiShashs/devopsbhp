@@ -17,6 +17,7 @@ spring:
         predicates:
         - Path : /srva/**
         filters:
+        - RewritePath=/srva/(?<segment>.*), /$\{segment}
         - name: CircuitBreaker
           args:
             name: monitor-a
@@ -26,6 +27,7 @@ spring:
         predicates:
         - Path: /srvb/**
         filters:
+        - RewritePath=/srvb/(?<segment>.*), /$\{segment}
         - name: CircuitBreaker
           args:
             name: monitor-b
