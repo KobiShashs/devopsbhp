@@ -29,9 +29,9 @@ spring:
       - id: service-a
         uri: lb://service-a
         predicates:
-        - Path=/moshe/**
+        - Path=/srva/**
         filters:
-        - RewritePath=/moshe/(?<segment>.*), /$\{segment}
+        - RewritePath=/srva/(?<segment>.*), /$\{segment}
         - name: CircuitBreaker
           args:
             name: monitor-srvA
@@ -39,9 +39,9 @@ spring:
       - id: service-b
         uri: lb://service-b
         predicates:
-        - Path=/kobi/**
+        - Path=/srvb/**
         filters:
-        - RewritePath=/kobi/(?<segment>.*), /$\{segment}
+        - RewritePath=/srvb/(?<segment>.*), /$\{segment}
         - name: CircuitBreaker
           args:
             name: monitor-srvB
