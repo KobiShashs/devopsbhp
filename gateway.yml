@@ -1,13 +1,13 @@
 server:
   port: 8080
 
-spring: 
+spring:
   cloud:
     consul:
-      discovery: 
+      discovery:
         instanceId: gateway
         health-check-interval: 5s
-        gateway:
+    gateway:
       discovery:
         locator:
           enabled: true
@@ -23,7 +23,7 @@ spring:
             name: monitor-srvA
             fallbackUri: forward:/fallback/serviceA
       - id: service-b
-        uri: lb://service-b
+        uri: lb://ms-service-b
         predicates:
         - Path=/srvb/**
         filters:
